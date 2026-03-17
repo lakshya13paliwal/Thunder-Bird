@@ -1,0 +1,43 @@
+Create a complete Flask web application called "ThunderBill" — a GST-compliant Invoice / Billing System for small businesses and freelancers in India. App name displayed everywhere should be "ThunderBill ⚡".
+
+Key requirements:
+
+1. Use Flask + Flask-SQLAlchemy + SQLite (database file: instance/billing.db).
+2. Do NOT use Replit Auth. Implement fully custom user authentication with:
+   - Register: username (unique), email (unique), phone number (unique, support +91xxxxxxxxxx), password (hashed with Werkzeug).
+   - Login: username + password.
+   - Use Flask-Login for session management.
+   - Protect all routes except register/login/forgot-password with @login_required.
+
+3. Forgot password flow:
+   - User enters phone number.
+   - Generate 6-digit OTP, store temporarily (in-memory dict with 10-min expiry).
+   - For development: print OTP to console + show "OTP sent to your registered phone".
+   - User enters OTP to verify.
+   - If correct → allow setting new password.
+
+4. Database models (SQLAlchemy):
+   - User (id, username, email, phone, password_hash)
+   - Client (id, name, email, phone, gstin, address, user_id)
+   - Item (id, name, hsn_code, rate, gst_percent default 18.0, user_id)
+   - Invoice (id, invoice_number unique like "TB-2026-0001", date, client_id, subtotal, gst_amount, grand_total, status ('Unpaid','Partial','Paid'), due_date, user_id)
+   - InvoiceItem (id, invoice_id, description, quantity, rate, gst_percent, amount)
+
+5. Core features with clean UI (Bootstrap 5 or Tailwind):
+   - Dashboard: total due amount, overdue count, recent 5 invoices.
+   - Full CRUD for Clients.
+   - Full CRUD for Items (products/services).
+   - Create Invoice: select client, dynamic line items (JS to add/remove rows), auto-calculate subtotal + GST + CGST/SGST split, grand total, unique invoice number.
+   - View invoice + Download as PDF using WeasyPrint (beautiful template with ThunderBill logo placeholder, GST breakdown, totals, Indian format).
+   - Mark invoice as Paid/Partial.
+
+6. Additional:
+   - Use .env for SECRET_KEY (auto-create if needed).
+   - Flash messages for all actions.
+   - Basic responsive design.
+   - Auto-create tables on first run.
+   - Run on 0.0.0.0.
+
+Start by creating app.py, models.py, templates folder (base.html, login.html, register.html, forgot.html, verify_otp.html, reset_password.html, dashboard.html, client_list.html, item_list.html, invoice_form.html, invoice_view.html), static folder, and .env file.
+
+Generate code step-by-step. Ask for confirmation before writing large files.

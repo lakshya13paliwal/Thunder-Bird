@@ -1,0 +1,17 @@
+packages:
+  "framer-motion": "For smooth page transitions and micro-interactions"
+  "recharts": "For the dashboard financial charts"
+  "date-fns": "For formatting invoice dates cleanly"
+  "lucide-react": "For beautiful UI icons"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility to merge tailwind classes safely"
+
+images:
+  - path: "artifacts/thunderbill/public/images/auth-bg.png"
+    description: "Abstract minimal 3D geometric shapes in deep indigo and white, smooth lighting, professional corporate SaaS feel"
+    aspect_ratio: "9:16"
+
+notes:
+  - Uses custom auth with httpOnly cookies (ThunderBill session)
+  - Generated API hooks from @workspace/api-client-react are used for data fetching
+  - PDF downloads are handled via standard browser fetch and blob URLs
